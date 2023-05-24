@@ -8,8 +8,7 @@ import {
 } from "@mui/material";
 import { useNavigate, useParams } from "react-router";
 import { Book as TBook } from "../../redux/reducers/booksReducer/booksSlice";
-
-const _apiBaseUrl = "https://the-one-api.dev/v2";
+import instance from "../../api/instance";
 
 export const Book = () => {
   const [book, setBook] = useState<TBook | null>(null);
@@ -18,14 +17,12 @@ export const Book = () => {
 
   const goBack = () => {
     navigate(-1);
-  }
-
-  console.log(id);
+  };
 
   useEffect(() => {
-    fetch(`${_apiBaseUrl}/book/${id}`)
-      .then((res) => res.json())
-      .then((data) => setBook(data.docs[0]));
+    instance
+      .get(`book/${id}`)
+      .then((res) => setBook(res.data.docs[0]));
   }, [id]);
 
   return (
@@ -34,12 +31,17 @@ export const Book = () => {
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           ID: {book?._id}
         </Typography>
-        <Typography sx={{ mb: 1.5, fontSize: 28, fontWeight: "bold" }} color="text.secondary">
+        <Typography
+          sx={{ mb: 1.5, fontSize: 28, fontWeight: "bold" }}
+          color="text.secondary"
+        >
           {book?.name}
         </Typography>
       </CardContent>
       <CardActions>
-        <Button onClick={goBack} size="small">Back</Button>
+        <Button onClick={goBack} size="small">
+          Back
+        </Button>
       </CardActions>
     </Card>
   );
