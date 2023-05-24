@@ -3,11 +3,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../redux/store/type";
 import { Book } from "../../redux/reducers/booksReducer/booksSlice";
 import { getAllBooks } from "../../redux/reducers/booksReducer/actionCreators/getAllBooks";
+import {
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from "@mui/material";
+import { Link } from "react-router-dom";
 
 export const Books = () => {
-  const books = useSelector((state: RootState) => state.books);
+  const { books } = useSelector((state: RootState) => state.books);
   const dispatch = useDispatch<AppDispatch>();
-  console.log(books)
+  console.log(books);
 
   useEffect(() => {
     dispatch(getAllBooks());
@@ -16,12 +26,31 @@ export const Books = () => {
   return (
     <div>
       <h1>Books</h1>
-      {books.books.map((book: Book) => (
-        <div key={book._id}>
-          <h2>{book._id}</h2>
-          <h3>{book.name}</h3>
-        </div>
-      ))}
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell sx={{ width: "100px" }}>ID</TableCell>
+              <TableCell>Name</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {books.map((book) => (
+              <TableRow
+                key={book._id}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <Link to={`/books/${book._id}`}>
+                  <TableCell component="th" scope="row">
+                    {book._id}
+                  </TableCell>
+                </Link>
+                <TableCell>{book.name}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </div>
   );
 };
