@@ -1,5 +1,7 @@
 import { combineReducers } from "@reduxjs/toolkit";
 
-export const combinedReducer = combineReducers({
+import books from '../reducers/booksReducer/booksSlice'
 
+export const combinedReducer = combineReducers({
+  books,
 })
