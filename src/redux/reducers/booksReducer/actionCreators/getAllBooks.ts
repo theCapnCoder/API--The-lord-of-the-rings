@@ -1,9 +1,9 @@
-import { createAsyncThunk} from '@reduxjs/toolkit'
-
-const _apiBaseUrl = 'https://the-one-api.dev/v2'
+import { createAsyncThunk } from '@reduxjs/toolkit'
+import instance from '../../../../api/instance'
 
 export const getAllBooks = createAsyncThunk('books/getAllBooks', async () => {
-  const response = await fetch(`${_apiBaseUrl}/book`);
-  const data = await response.json();
+  const response = await instance.get('/book');
+  const data = await response.data;
+
   return data
 })
