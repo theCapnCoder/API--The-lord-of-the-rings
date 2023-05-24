@@ -17,7 +17,6 @@ import { Link } from "react-router-dom";
 export const Books = () => {
   const { books } = useSelector((state: RootState) => state.books);
   const dispatch = useDispatch<AppDispatch>();
-  console.log(books);
 
   useEffect(() => {
     dispatch(getAllBooks());
@@ -40,11 +39,9 @@ export const Books = () => {
                 key={book._id}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
-                <Link to={`/books/${book._id}`}>
-                  <TableCell component="th" scope="row">
-                    {book._id}
-                  </TableCell>
-                </Link>
+                <TableCell component="th" scope="row">
+                  <Link to={`/books/${book._id}`}>{book._id}</Link>
+                </TableCell>
                 <TableCell>{book.name}</TableCell>
               </TableRow>
             ))}
