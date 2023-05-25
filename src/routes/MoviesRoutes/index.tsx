@@ -1,13 +1,14 @@
 import { RouteObject } from "react-router";
-import { Movies } from "../../pages/Home/Movies";
+import { MovieList } from "../../pages/Home/Movies/MovieList";
+import { MovieDetails } from "../../pages/Home/Movies/MovieDetails";
 
 export const movies: RouteObject[] = [
   {
     path: "/movies",
-    element: <Movies />,
+    element: <MovieList />,
   },
   {
     path: "/movies/:id",
-    element: <Movies />,
+    element: <MovieDetails />,
   },
 ];
