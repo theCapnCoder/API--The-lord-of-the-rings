@@ -1,7 +1,7 @@
+import { RouteObject } from "react-router";
 import { Quotes } from "../../pages/Home/Quotes";
-import { Routes } from "../type";
 
-export const quotes: Routes = [
+export const quotes: RouteObject[] = [
   {
     path: "/Quotes",
     element: <Quotes />,

@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../redux/store/type";
-import { Book } from "../../redux/reducers/booksReducer/booksSlice";
 import { getAllBooks } from "../../redux/reducers/booksReducer/actionCreators/getAllBooks";
 import {
   Paper,
