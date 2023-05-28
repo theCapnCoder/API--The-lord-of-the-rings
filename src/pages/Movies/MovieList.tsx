@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../../redux/store/type";
-import { getAllMovies } from "../../../redux/reducers/moviesReducer/actionReducer/getAllMovies";
+import { AppDispatch, RootState } from "../../redux/store/type";
+import { getAllMovies } from "../../redux/reducers/moviesReducer/actionReducer/getAllMovies";
 import MovieCard from "./MovieCard";
 import { Button, Grid } from "@mui/material";
-import instance from "../../../api/instance";
+import instance from "../../api/instance";
 
 const movie = {
   _id: "5cd95395de30eff6ebccde5c",

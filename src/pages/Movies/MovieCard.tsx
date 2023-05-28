@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardContent, Typography } from '@mui/material';
 import { Movie as MovieIcon, Star, Money, Timer, EmojiEvents } from '@mui/icons-material';
-import { Movie } from '../../../redux/reducers/moviesReducer/moviesSlice';
+import { Movie } from '../../redux/reducers/moviesReducer/moviesSlice';
 
 type Props = {
   movie: Movie;
