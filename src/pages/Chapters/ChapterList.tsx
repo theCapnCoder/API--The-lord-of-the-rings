@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../redux/store/type";
 import { getAllChapters } from "../../redux/reducers/chaptersReducer/actionReducer/getAllChapters";
@@ -12,21 +12,34 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  Typography,
 } from "@mui/material";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { getChunkOfTenElements } from "../../helpers/helper";
+import ChapterModal from "./ChapterModal";
 
 export const ChapterList = () => {
   const { chapters } = useSelector((state: RootState) => state.chapters);
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
+
+  const [openModal, setOpenModal] = useState(false);
+
   const { pageNumber, id } = useParams();
   console.log(pageNumber, id);
 
   const countPages = Math.ceil(chapters.length / 10);
   const chaptersSlice = getChunkOfTenElements(chapters, pageNumber);
 
-  console.log(chaptersSlice);
+  const modalData = {
+    openModal,
+    handleOpen(){
+      setOpenModal((prev) => !prev);
+    },
+    handleClose(){
+      setOpenModal((prev) => !prev);
+    },
+  }
 
   useEffect(() => {
     dispatch(getAllChapters());
@@ -34,6 +47,9 @@ export const ChapterList = () => {
 
   return (
     <>
+      <Typography variant="h3" sx={{ mb: 2 }}>
+        List of all book chapters
+      </Typography>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
@@ -45,6 +61,7 @@ export const ChapterList = () => {
           <TableBody>
             {chaptersSlice.map((chapter) => (
               <TableRow
+                onClick= {() => modalData.handleOpen()}
                 key={chapter._id}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
@@ -68,6 +85,8 @@ export const ChapterList = () => {
           color="primary"
         />
       </Stack>
+
+      <ChapterModal {...modalData} />
     </>
   );
 };
