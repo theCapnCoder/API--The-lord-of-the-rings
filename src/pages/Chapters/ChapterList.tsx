@@ -20,10 +20,11 @@ export const ChapterList = () => {
   const { chapters } = useSelector((state: RootState) => state.chapters);
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
-  const { id } = useParams();
+  const { pageNumber, id } = useParams();
+  console.log(pageNumber, id);
 
   const countPages = Math.ceil(chapters.length / 10);
-  const chaptersSlice = getChunkOfTenElements(chapters, id);
+  const chaptersSlice = getChunkOfTenElements(chapters, pageNumber);
 
   console.log(chaptersSlice);
 
@@ -48,7 +49,9 @@ export const ChapterList = () => {
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
-                  <Link to={`/books/${chapter._id}`}>{chapter._id}</Link>
+                  <Link to={`/chapters/${pageNumber ?? 1}/${chapter._id}`}>
+                    {chapter._id}
+                  </Link>
                 </TableCell>
                 <TableCell>{chapter.chapterName}</TableCell>
               </TableRow>

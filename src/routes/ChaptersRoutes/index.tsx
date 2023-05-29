@@ -7,7 +7,7 @@ export const chapters: RouteObject[] = [
     element: <ChapterList />,
   },
   {
-    path: "/Chapters/:id",
+    path: "/Chapters/:pageNumber/:id?",
     element: <ChapterList />,
   },
 ];
