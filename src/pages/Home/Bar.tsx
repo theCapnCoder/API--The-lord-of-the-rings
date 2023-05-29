@@ -13,7 +13,7 @@ import {
   Avatar,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const pages = ["Books", "Movies", "Characters", "Quotes", "Chapters"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -105,9 +105,8 @@ export const Bar = () => {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
-                {/* <Link to={`/${page}`}>{page}</Link> */}
                 <Link
-                  to={`/${page}`}
+                  to={`/${page.toLocaleLowerCase()}`}
                   style={{ textDecoration: "none", color: "white" }}
                 >
                   <Typography textAlign="center">{page}</Typography>
