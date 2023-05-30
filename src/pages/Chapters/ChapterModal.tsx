@@ -57,67 +57,59 @@ export default function ChapterModal({
         setPending(false);
       });
     }
-    console.log("hello");
   }, [id]);
-
-  console.log("enter===", chapters);
 
   return (
     <>
-      <>
-        <Button onClick={handleOpen} variant="outlined" size="small">
-          One specific book chapter
-        </Button>
-        <Modal
-          open={openModal}
-          onClose={handleClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box sx={style}>
-            {pending ? (
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  height: "100%",
-                }}
-              >
-                <CircularProgress />
-              </Box>
-            ) : (
-              <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 1000 }} aria-label="simple table">
-                  <TableHead>
-                    <TableRow>
-                      <TableCell sx={{ width: "100px" }}>ID</TableCell>
-                      <TableCell>chapterName</TableCell>
-                      <TableCell>book ID</TableCell>
+      <Modal
+        open={openModal}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          {pending ? (
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "100%",
+              }}
+            >
+              <CircularProgress />
+            </Box>
+          ) : (
+            <TableContainer component={Paper}>
+              <Table sx={{ minWidth: 1000 }} aria-label="simple table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell sx={{ width: "100px" }}>ID</TableCell>
+                    <TableCell>chapterName</TableCell>
+                    <TableCell>book ID</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {chapters.map((chapter) => (
+                    <TableRow
+                      key={chapter._id}
+                      sx={{
+                        "&:last-child td, &:last-child th": { border: 0 },
+                      }}
+                    >
+                      <TableCell component="th" scope="row">
+                        {chapter._id}
+                      </TableCell>
+                      <TableCell>{chapter.chapterName}</TableCell>
+                      <TableCell>{chapter.book}</TableCell>
                     </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {chapters.map((chapter) => (
-                      <TableRow
-                        key={chapter._id}
-                        sx={{
-                          "&:last-child td, &:last-child th": { border: 0 },
-                        }}
-                      >
-                        <TableCell component="th" scope="row">
-                          {chapter._id}
-                        </TableCell>
-                        <TableCell>{chapter.chapterName}</TableCell>
-                        <TableCell>{chapter.book}</TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            )}
-          </Box>
-        </Modal>
-      </>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          )}
+        </Box>
+      </Modal>
     </>
   );
 }
