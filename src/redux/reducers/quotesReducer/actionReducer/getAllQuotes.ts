@@ -1,11 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import instance from '../../../../api/instance'
 
-// export enum Pagination {
-//   limit = 'limit',
-//   page = 'page',
-//   offset = 'offset'
-// }
+export enum Pagination {
+  limit = 'limit',
+  page = 'page',
+  offset = 'offset'
+}
 
 export const getAllQuotes = createAsyncThunk(
   'quotes/getAllQuotes',
