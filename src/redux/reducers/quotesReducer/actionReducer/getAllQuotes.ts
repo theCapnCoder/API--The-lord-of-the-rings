@@ -10,7 +10,7 @@ export enum Pagination {
 export const getAllQuotes = createAsyncThunk(
   'quotes/getAllQuotes',
   async (typePagination: Pagination) => {
-    const response = await instance.get(`/quote?${typePagination}=20`)
+    const response = await instance.get(`/quote?${typePagination}=2`)
     const data = response.data
 
     return data;
