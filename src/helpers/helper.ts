@@ -6,3 +6,4 @@ export function getChunkOfTenElements(objects: any[], number: string | undefined
   return chunk;
 }
 
+
