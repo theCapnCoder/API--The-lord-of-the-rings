@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/API--The-lord-of-the-rings/static/js/main.caaa375d.js",
+    "main.js": "/API--The-lord-of-the-rings/static/js/main.b91b92f9.js",
     "index.html": "/API--The-lord-of-the-rings/index.html",
-    "main.caaa375d.js.map": "/API--The-lord-of-the-rings/static/js/main.caaa375d.js.map"
+    "main.b91b92f9.js.map": "/API--The-lord-of-the-rings/static/js/main.b91b92f9.js.map"
   },
   "entrypoints": [
-    "static/js/main.caaa375d.js"
+    "static/js/main.b91b92f9.js"
   ]
 }
